@@ -1,35 +1,3 @@
-void initQuadrant2() {
-  byte known, klingon, base, star;
-  totalKlingon = 0;
-  totalBase = 0;
-
-  for ( int i = 0; i < 8; i++) {
-    for ( int j = 0; j < 8; j++) {
-      known = 0;
-      int r = random(100);
-      if (r > 98) {
-        klingon = 3;
-      } else if (r > 95) {
-        klingon = 2;
-      } else if (r > 80) {
-        klingon = 1;
-      } else {
-        klingon = 0;
-      }
-      r = random(100);
-      if (r > 96) {
-        base = 1;
-      } else {
-        base = 0;
-      }
-      star = random(8) + 1;
-      totalKlingon += klingon;
-      totalBase += base;
-      quadrant[i][j] = known * 128 + klingon * 32 + base * 16 + star;
-    }
-  }
-}
-
 void initQuadrant() {
   byte counter=0;
   int rx,ry;
@@ -83,12 +51,14 @@ void initSector(byte mx, byte my) {
   sBlackhole = 0;
   sectorJamming = 0;
   
+  memset(&sector, 0, sizeof(sector));
+/*
   for(int i=0; i<8; i++){
     for(int j=0; j<8; j++){
       sector[i][j]=0;
     }
   }
-
+*/
   if( existBlackhole == 1){
     if(random(10) == 0){
       counter = 0;
@@ -104,7 +74,6 @@ void initSector(byte mx, byte my) {
       }
     }
   }
-//  sectorJamming = 1;
 
   if( k>0 && jamming == 1 && sBlackhole == 0 && random(10)==0){
     sectorJamming = 1;
@@ -112,12 +81,32 @@ void initSector(byte mx, byte my) {
     sectorJamming = 0;
   }
 
-  rx = random(8);
-  ry = random(8);
-  sector[rx][ry] = 1;
-  enterprise.sector.x = rx;
-  enterprise.sector.y = ry;
-
+  if( asteroid ==1 && random(8)==0 ){
+    rx=random(4)+2;
+    switch(random(2)){
+      case 0:
+        for( int i=0; i<8; i++){
+          sector[i][rx]=12;
+        }
+        break;
+      case 1:
+        for( int i=0; i<8; i++){
+          sector[rx][i]=12;
+        }
+        break;
+    }
+  }
+  counter = 0;
+  while (counter < 1) {
+    rx = random(8);
+    ry = random(8);
+    if (sector[rx][ry] == 0) {
+      sector[rx][ry] = 1;
+      enterprise.sector.x = rx;
+      enterprise.sector.y = ry;
+      counter++;
+    }
+  }
   counter = 0;
   while (counter < k) {
     rx = random(8);

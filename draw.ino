@@ -88,6 +88,9 @@ void drawSRS(byte dx) {
         case 11:
           c = '*';
           break;
+        case 12:
+          c = ':';
+          break;
       }
       font3x5.setCursor(x * 7 + 4 + dx, y * 7);
       font3x5.print( c );

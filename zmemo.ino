@@ -91,7 +91,7 @@ void configuration() {
     arduboy.clear();
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(10, 0, "CONFIGURATION", 1);
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
       strcpy_P( buf, (char*)pgm_read_word(&(config_table[i])));
       prints(4, i + 2, buf, curs == i);
     }
@@ -103,14 +103,16 @@ void configuration() {
     prints(20, 5, buf, 0);
     strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
     prints(20, 6, buf, 0);
+    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[6 + asteroid])));
+    prints(20, 7, buf, 0);
     arduboy.display();
 
     arduboy.pollButtons();
     if (arduboy.justPressed(UP_BUTTON)) {
-      curs = (curs + 5) % 6;
+      curs = (curs + 6) % 7;
     }
     if (arduboy.justPressed(DOWN_BUTTON)) {
-      curs = (curs + 1) % 6;
+      curs = (curs + 1) % 7;
     }
     if (arduboy.justPressed(A_BUTTON)) {
       switch (curs) {
@@ -132,6 +134,9 @@ void configuration() {
           jamming = !jamming;
           break;
         case 5:
+          asteroid = !asteroid;
+          break;
+        case 6:
           done = 1;
           break;
       }
