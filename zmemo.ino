@@ -91,10 +91,14 @@ void configuration() {
     arduboy.clear();
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(10, 0, "CONFIGURATION", 1);
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 6; i++) {
       strcpy_P( buf, (char*)pgm_read_word(&(config_table[i])));
       prints(4, i + 2, buf, curs == i);
     }
+    strcpy_P( buf, (char*)pgm_read_word(&(config_table[6])));
+    prints(10, 8, buf, curs == 6);
+
+    font3x5.setTextColor(WHITE);
     font3x5.setCursor(80, 14); font3x5.print( totalKlingon );
     font3x5.setCursor(80, 21); font3x5.print( totalBase );
     strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[0 + supply])));
@@ -118,11 +122,11 @@ void configuration() {
       switch (curs) {
         case 0:
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
-          totalKlingon = askAmount( 1, 99, buf, 25, 0 );
+          totalKlingon = askAmount( 1, 99, buf, totalKlingon, 0 );
           break;
         case 1:
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
-          totalBase = askAmount( 0, 9, buf, 3, 0 );
+          totalBase = askAmount( 0, 9, buf, totalBase, 0 );
           break;
         case 2:
           supply = !supply;
