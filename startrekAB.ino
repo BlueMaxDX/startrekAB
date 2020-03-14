@@ -183,6 +183,9 @@ void loop() {
   totalBase = 3;
   title();
   configuration();
+  initQuadrant();
+  initEnterprise();
+  initSector(enterprise.quadrant.x, enterprise.quadrant.y);
   toEnterprise(1);
   dispMain();
   toEnterprise( gloop + 1 );

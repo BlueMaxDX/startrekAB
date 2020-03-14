@@ -1,4 +1,4 @@
-void prints(int x, int y, char *message, bool inv) {
+void prints(int x, int y, const char *message, bool inv) {
   font3x5.setCursor( x*4+1, y*7 );
   if(inv == 0){
     font3x5.setTextColor(WHITE);

@@ -20,15 +20,7 @@ void title() {
   prints(12, 7, "STARTREK", 1);
   arduboy.display();
 
-  while(1){
-    arduboy.pollButtons();
-    if (arduboy.justPressed(A_BUTTON)) {
-      initQuadrant();
-      initEnterprise();
-      initSector(enterprise.quadrant.x, enterprise.quadrant.y);
-      break;
-    }
-  }
+  waitA();
 }
 
 void toEnterprise( int mes ){
