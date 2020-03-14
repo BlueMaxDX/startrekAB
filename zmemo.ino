@@ -105,9 +105,9 @@ void configuration() {
     prints(20, 4, buf, 0);
     strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + existBlackhole])));
     prints(20, 5, buf, 0);
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
+    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + asteroid])));
     prints(20, 6, buf, 0);
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[6 + asteroid])));
+    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
     prints(20, 7, buf, 0);
     arduboy.display();
 
@@ -135,10 +135,10 @@ void configuration() {
           existBlackhole = !existBlackhole;
           break;
         case 4:
-          jamming = !jamming;
+          asteroid = !asteroid;
           break;
         case 5:
-          asteroid = !asteroid;
+          jamming = !jamming;
           break;
         case 6:
           done = 1;

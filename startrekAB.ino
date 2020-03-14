@@ -121,8 +121,8 @@ const char config_0[] PROGMEM = " NUM OF ENEMY";
 const char config_1[] PROGMEM = "  NUM OF BASE";
 const char config_2[] PROGMEM = "  BASE SUPPLY";
 const char config_3[] PROGMEM = "   BLACK HOLE";
-const char config_4[] PROGMEM = "      JAMMING";
-const char config_5[] PROGMEM = "ASTEROID BELT";
+const char config_4[] PROGMEM = "ASTEROID BELT";
+const char config_5[] PROGMEM = "      JAMMING";
 const char config_6[] PROGMEM = "START MISSION";
 const char * const config_table[] PROGMEM = {
   config_0, config_1, config_2, config_3,
@@ -135,11 +135,9 @@ const char confItem_2[] PROGMEM = "NOT EXIST";
 const char confItem_3[] PROGMEM = "EXIST";
 const char confItem_4[] PROGMEM = "DON'T";
 const char confItem_5[] PROGMEM = "DO";
-const char confItem_6[] PROGMEM = "NOT EXIST";
-const char confItem_7[] PROGMEM = "EXIST";
 const char * const confItem_table[] PROGMEM = {
   confItem_0, confItem_1, confItem_2, confItem_3,
-  confItem_4, confItem_5, confItem_6, confItem_7
+  confItem_4, confItem_5
 };
 
 struct player {
