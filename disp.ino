@@ -329,8 +329,8 @@ void moveEnterprise( int deg, int dist ) {
     }
     if (sector[xs][ys] > 1) {
       hit = sector[xs][ys];
-      xs = (x + (n - 4) * cos(2 * 3.1415 * (deg + bdeg/30) / 360) - 1 ) / 7;
-      ys = (y + (n - 4) * sin(2 * 3.1415 * (deg + bdeg/30) / 360) + 4 ) / 7;
+      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
+      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
       sector[xs][ys] = 1;
       enterprise.sector.x = xs;
       enterprise.sector.y = ys;
