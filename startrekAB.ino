@@ -56,28 +56,9 @@ const char string_9[] PROGMEM =
   "      '----------------'";
 
 const char * const string_table[] PROGMEM = {
-  string_0,
-  string_1,
-  string_2,
-  string_3,
-  string_4,
-  string_5,
-  string_6,
-  string_7,
-  string_8,
-  string_9
-};
-
-//struct
-struct point {
-  byte x;
-  byte y;
-};
-
-struct ship {
-  point sector;
-  int energy;
-  int torpedo;
+  string_0, string_1, string_2, string_3,
+  string_4, string_5, string_6, string_7,
+  string_8, string_9
 };
 
 const char menu_0[] PROGMEM = "MAP";
@@ -138,6 +119,18 @@ const char confItem_5[] PROGMEM = "DO";
 const char * const confItem_table[] PROGMEM = {
   confItem_0, confItem_1, confItem_2, confItem_3,
   confItem_4, confItem_5
+};
+
+//struct
+struct point {
+  byte x;
+  byte y;
+};
+
+struct ship {
+  point sector;
+  int energy;
+  int torpedo;
 };
 
 struct player {

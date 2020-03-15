@@ -27,6 +27,7 @@ int dispComputer() {
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
+//  int success = 0;
   char buf[16];
   
   if ( damage[7] > 0) {
@@ -100,8 +101,20 @@ int dispComputer() {
           d = askAmount( 0, enterprise.energy, buf, 100, 0 );
           for( int i=0; i < d * 8; i++){
             r=random(8);
-            if( damage[r] > 0 && random(100)==0 ) damage[r]--;
+            if( damage[r] > 0 && random(100)==0 ) {
+              damage[r]--;
+//              success++;
+            }
           }
+/*          
+          openWindow();
+          font3x5.setTextColor(WHITE);
+          font3x5.setCursor(20, 20);
+          font3x5.print( success );
+          arduboy.display();
+          waitA();
+          closeWindow();
+*/
           break;
         case 4:
           arduboy.clear();
