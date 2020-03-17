@@ -90,14 +90,6 @@ int dispComputer() {
         case 3:
           d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 100, 0 );
           selfRepair( d );
-/*
-          for( int i=0; i < d * 8; i++){
-            r=random(8);
-            if( damage[r] > 0 && random(100)==0 ) {
-              damage[r]--;
-            }
-          }
-*/
           break;
         case 4:
           arduboy.clear();
@@ -174,17 +166,7 @@ void dispMain() {
           break;
         case 3: //phaser
           if ( damage[4] > 0 ) {
-
             alert(0, 4, 2);
-/*
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("PHASER IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
-*/
           } else {
             d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 0, 0 );
             firePhaser( d );
@@ -195,15 +177,6 @@ void dispMain() {
         case 4: //shield
           if ( damage[5] > 0 ) {
             alert(0, 5, 2);
-/*
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("SHIELD IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
-*/
           } else {
             c = askAmount( 0, 100, rfsp( ALERT_BASE_ID + 3), 50, 0 );
             total = enterprise.energy + enterprise.shield;
@@ -218,26 +191,8 @@ void dispMain() {
         case 6: //probe
           if ( damage[6] > 0 ) {
             alert(0, 6, 2);
-/*
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("PROBE IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
-*/
           } else if ( sectorJamming == 1) {
             alert(0, 8, 0);
-/*
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("JAMMING!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
-*/
           } else {
             probe();
           }
@@ -247,21 +202,14 @@ void dispMain() {
             repairMechanism();
             klingonAttack();
           }
-          //                      go = 1;
-          //            gameover();
           break;
       }
       days--;
       if( days < 0 ) gloop = 1;
       if( enterprise.energy < 0 ) gloop = 2;
       if( totalKlingon == 0 ) gloop = 3;
-      // gameover check
-      //      if ( go == 1 ) break;
-      //      klingonAttack();
     }
     arduboy.display();
-    //    repairMechanism();
-    //    if ( go == 1 ) break;
   }
 }
 
@@ -389,26 +337,8 @@ void launchTorpedo( int m ) {
 
   if ( damage[3] > 0 ) {
     alert(0,4,2);
-/*
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("TORPEDO IS DAMAGED!"));
-    arduboy.display();
-    waitA();
-    closeWindow();
-*/
   } else if ( enterprise.torpedo == 0) {
     alert(0,8,1);
-/*
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("TORPEDO IS EMPTY!"));
-    arduboy.display();
-    waitA();
-    closeWindow();
-*/
   } else {
     if ( m == 0 ) {
       c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), 0, 1 );

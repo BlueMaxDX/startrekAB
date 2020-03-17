@@ -50,27 +50,9 @@ void warpQuadrant( byte x, byte y, int deg ) {
   longRangeSensor(enterprise.quadrant.x, enterprise.quadrant.y);
   if ( sBlackhole == 1 ) {
     alert(1,8,2);
-/*
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("STRONG GRAVITY\nFIELD OBSERVED"));
-    arduboy.display();
-    waitA();
-    closeWindow();
-*/
   }
   if ( sectorJamming == 1 ) {
     alert(1,8,3);
-/*
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("JAMMING DETECTED"));
-    arduboy.display();
-    waitA();
-    closeWindow();
-*/
   }
 }
 
@@ -188,18 +170,12 @@ void alert( int lev, int mec, int con ) {
     font3x5.print( F("CAUTION") );
     font3x5.setTextColor( WHITE );
   }
-  font3x5.setCursor(40, 24);
+  font3x5.setCursor(28, 24);
   if ( mec < 8 ) {
     font3x5.print( rfsp( MECHANISM_BASE_ID + mec) );
-    if ( con == 0 ) {
-      font3x5.print( rfsp( 47 ) );  //is damaged
-    } else if ( con == 1 ){
-      font3x5.print( rfsp( 48 ) );  //is repaired
-    } else {
-      font3x5.print( rfsp( 49 ) );  //is out of order
-    }
+    font3x5.print( rfsp( 47 + con ) );  //is damaged
   } else {
-      font3x5.print( rfsp( 50 + con ) );
+    font3x5.print( rfsp( 50 + con ) );
   }
   arduboy.display();
   

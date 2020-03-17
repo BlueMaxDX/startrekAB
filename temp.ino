@@ -78,31 +78,12 @@ void damageMechanism(){
     enterprise.shield = 0;
   }
   alert(1,r,0);
-/*  openWindow();
-  font3x5.setCursor( 20, 20 );
-  font3x5.print( rfsp( MECHANISM_BASE_ID + r) );
-  font3x5.setCursor( 22, 27 );
-  font3x5.print( F("IS DAMAGED!") );
-  arduboy.display();
-  waitA();
-  closeWindow();
-*/
 }
 
 void repairMechanism(){
   for(int i=0; i<8; i++){
     if( damage[i] == 1 ){
       alert(0,i,1);
-/*
-      openWindow();
-      font3x5.setCursor( 20, 20 );
-      font3x5.print( rfsp( MECHANISM_BASE_ID + i) );
-      font3x5.setCursor( 22, 27 );
-      font3x5.print( F("IS REPAIRED!") );
-      arduboy.display();
-      waitA();
-      closeWindow();
-*/
     }
   }
   for(int i=0; i<8; i++){
