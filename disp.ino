@@ -1,11 +1,11 @@
 void dispDamage() {
-  char buf[13];
+//  char buf[13];
   arduboy.clear();
   arduboy.fillRect(0, 0, 127, 7, WHITE);
   prints(8, 0, "DAMAGE REPORT", 1);
   for (int i = 0; i < 8; i++) {
 //    strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
-    prints(6, i + 1, buf, (damage[i] > 0));
+    prints(6, i + 1, rfsp( MECHANISM_BASE_ID + i), (damage[i] > 0));
     font3x5.print(F("    "));
     font3x5.setTextColor(WHITE);
     if (damage[i] > 0) {
@@ -27,7 +27,7 @@ int dispComputer() {
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
-  char buf[16];
+//  char buf[16];
   
   if ( damage[7] > 0) {
     offset = 4;
@@ -39,7 +39,7 @@ int dispComputer() {
     prints(8, 0, "LIBRARY COMPUTER", 1);
     for (int i = offset; i < 6; i++) {
 //      strcpy_P( buf, (char*)pgm_read_word(&(computer_table[i])));
-      prints(8, i + 3, buf, curs == i);
+      prints(8, i + 3, rfsp( COMPUTER_BASE_ID + i ), curs == i);
     }
     arduboy.display();
 
@@ -63,12 +63,12 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2));
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 359, buf, degree, 1 );
+          c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 2, buf, 2, 0 );
+            d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
-            d = askAmount( 0, 80, buf, dist, 0 );
+            d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
           }
           moveEnterprise( c, d );
           break;
@@ -83,12 +83,12 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 359, buf, degree, 1 );
+          c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 2, buf, 2, 0 );
+            d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
-            d = askAmount( 0, 80, buf, dist, 0 );
+            d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
           }
           moveEnterprise( c, d );
           break;
@@ -97,7 +97,7 @@ int dispComputer() {
           break;
         case 3:
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
-          d = askAmount( 0, enterprise.energy, buf, 100, 0 );
+          d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 100, 0 );
           selfRepair( d );
 /*
           for( int i=0; i < d * 8; i++){
@@ -143,7 +143,7 @@ void dispGalaxy() {
 
 void dispMain() {
   int go = 0;
-  char buf[16];
+//  char buf[16];
   int c, d;
   double total;
   point sectorCurs;
@@ -168,12 +168,12 @@ void dispMain() {
           break;
         case 1: //warp engine
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 359, buf, 0, 1 );
+          c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), 0, 1 );
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 2, buf, 2, 0 );
+            d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
-            d = askAmount( 0, 80, buf, 2, 0 );
+            d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           }
           moveEnterprise( c, d );
           repairMechanism();
@@ -200,7 +200,7 @@ void dispMain() {
 
           } else {
 //            strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
-            d = askAmount( 0, enterprise.energy, buf, 0, 0 );
+            d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 0, 0 );
             firePhaser( d );
             repairMechanism();
             klingonAttack();
@@ -217,7 +217,7 @@ void dispMain() {
             closeWindow();
           } else {
 //            strcpy_P( buf, (char*)pgm_read_word(&(string_table[3])));
-            c = askAmount( 0, 100, buf, 50, 0 );
+            c = askAmount( 0, 100, rfsp( ALERT_BASE_ID + 3), 50, 0 );
             total = enterprise.energy + enterprise.shield;
             enterprise.shield = total * c / 100;
             enterprise.energy = total * ( 100 - c ) / 100;
@@ -388,7 +388,7 @@ void moveEnterprise( int deg, int dist ) {
 }
 
 void launchTorpedo( int m ) {
-  char buf[16];
+//  char buf[16];
   int ans;
   int x, y, c, d;
   float dx, dy, radius;
@@ -413,7 +413,7 @@ void launchTorpedo( int m ) {
   } else {
     if ( m == 0 ) {
 //      strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-      c = askAmount( 0, 359, buf, 0, 1 );
+      c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), 0, 1 );
       fireTorpedo( c );
     } else {
       ans = getSector();
@@ -425,7 +425,7 @@ void launchTorpedo( int m ) {
       degree = radius / 2 / 3.1415 * 360;
       if (degree < 0) degree += 360;
 //      strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-      c = askAmount( 0, 359, buf, degree, 1 );
+      c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
       fireTorpedo( c );
     }
   }

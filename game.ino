@@ -37,7 +37,7 @@ void toEnterprise( int mes ){
     printer.slowPrint( rfsp( 1 ) );
     printer.slowPrint( totalKlingon );
     printer.slowPrint( rfsp( 2 ) );
-    printer.slowPrint( totalKlingon );
+    printer.slowPrint( totalBase );
     printer.slowPrint( rfsp( 3 ) );
   } else {
     printer.slowPrint( rfsp( mes + 3 ) );

@@ -144,12 +144,12 @@ void loop() {
   totalKlingon = 25;
   totalBase = 3;
   title();
-//  configuration();
+  configuration();
   initQuadrant();
   initEnterprise();
   initSector(enterprise.quadrant.x, enterprise.quadrant.y);
   toEnterprise(1);
-//  dispMain();
-//  toEnterprise( gloop + 1 );
+  dispMain();
+  toEnterprise( gloop + 1 );
   gloop=0;
 }

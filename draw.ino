@@ -41,10 +41,10 @@ void drawGalaxy() {
 }
 
 void drawMenu() {
-  char buf[4];
+//  char buf[4];
   for (int i = 0; i < 8; i++) {
 //    strcpy_P( buf, (char*)pgm_read_word(&(menu_table[i])));
-    prints(i * 4, 8, buf, (gcurs == i));
+    prints(i * 4, 8, rfsp( MENU_BASE_ID + i), (gcurs == i));
   }
 }
 
@@ -169,7 +169,7 @@ void crashAnimation() {
   }
 }
 
-int askAmount( int minimum, int maximum, char* message, int def, int m ) {
+int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int m ) {
   int result = def;
   int delta = 0;
   int border;

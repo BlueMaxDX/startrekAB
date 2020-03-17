@@ -85,7 +85,7 @@ void updateMain() {
 
 void configuration() {
   int curs = 6;
-  char buf[16];
+//  char buf[16];
   int done = 0;
   while (done == 0) {
     arduboy.clear();
@@ -93,22 +93,22 @@ void configuration() {
     prints(10, 0, "CONFIGURATION", 1);
     for (int i = 0; i < 6; i++) {
 //      strcpy_P( buf, (char*)pgm_read_word(&(config_table[i])));
-      prints(4, i + 2, buf, curs == i);
+      prints(4, i + 2, rfsp( CONFIG_BASE_ID + i), curs == i);
     }
 //    strcpy_P( buf, (char*)pgm_read_word(&(config_table[6])));
-    prints(10, 8, buf, curs == 6);
+    prints(10, 8, rfsp( ALERT_BASE_ID + 6), curs == 6);
 
     font3x5.setTextColor(WHITE);
     font3x5.setCursor(80, 14); font3x5.print( totalKlingon );
     font3x5.setCursor(80, 21); font3x5.print( totalBase );
 //    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[0 + supply])));
-    prints(20, 4, buf, 0);
+    prints(20, 4, rfsp( CONFITEM_BASE_ID + supply), 0);
 //    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + existBlackhole])));
-    prints(20, 5, buf, 0);
+    prints(20, 5, rfsp( CONFITEM_BASE_ID + 2 + existBlackhole), 0);
 //    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + asteroid])));
-    prints(20, 6, buf, 0);
+    prints(20, 6, rfsp( CONFITEM_BASE_ID + 2 + asteroid), 0);
 //    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
-    prints(20, 7, buf, 0);
+    prints(20, 7, rfsp( CONFITEM_BASE_ID + 4 + jamming), 0);
     arduboy.display();
 
     arduboy.pollButtons();
@@ -122,11 +122,11 @@ void configuration() {
       switch (curs) {
         case 0:
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
-          totalKlingon = askAmount( 1, 99, buf, totalKlingon, 0 );
+          totalKlingon = askAmount( 1, 99, rfsp( ALERT_BASE_ID + 4), totalKlingon, 0 );
           break;
         case 1:
 //          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
-          totalBase = askAmount( 0, 9, buf, totalBase, 0 );
+          totalBase = askAmount( 0, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
           break;
         case 2:
           supply = !supply;
@@ -149,7 +149,7 @@ void configuration() {
 }
 
 void selfRepair( int d ){
-  char buf[13];
+//  char buf[13];
   int r;
   for( int turn = 0; turn < d; turn++){
     arduboy.clear();
@@ -157,7 +157,7 @@ void selfRepair( int d ){
     prints(8, 0, "SELF REPAIR", 1);
     for (int i = 0; i < 8; i++) {
 //      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
-      prints(6, i + 1, buf, (damage[i] > 0));
+      prints(6, i + 1, rfsp( MECHANISM_BASE_ID + i), (damage[i] > 0));
       font3x5.print(F("    "));
       font3x5.setTextColor(WHITE);
       if (damage[i] > 0) {
