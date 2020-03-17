@@ -8,6 +8,7 @@
 #define   CONFIG_BASE_ID    (29)
 #define   CONFITEM_BASE_ID  (36)
 #define   ALERT_BASE_ID     (42)
+#define   MESSAGE_BASE_ID   (50)
 
 const char string_0[] PROGMEM = 
   "                ,------*------,\n"

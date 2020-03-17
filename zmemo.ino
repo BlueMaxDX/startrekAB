@@ -175,7 +175,7 @@ void alert( int lev, int mec, int con ) {
     font3x5.print( rfsp( MECHANISM_BASE_ID + mec) );
     font3x5.print( rfsp( 47 + con ) );  //is damaged
   } else {
-    font3x5.print( rfsp( 50 + con ) );
+    font3x5.print( rfsp( MESSAGE_BASE_ID + con ) );
   }
   arduboy.display();
   
