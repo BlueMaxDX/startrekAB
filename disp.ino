@@ -1,10 +1,8 @@
 void dispDamage() {
-//  char buf[13];
   arduboy.clear();
   arduboy.fillRect(0, 0, 127, 7, WHITE);
   prints(8, 0, "DAMAGE REPORT", 1);
   for (int i = 0; i < 8; i++) {
-//    strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
     prints(6, i + 1, rfsp( MECHANISM_BASE_ID + i), (damage[i] > 0));
     font3x5.print(F("    "));
     font3x5.setTextColor(WHITE);
@@ -27,7 +25,6 @@ int dispComputer() {
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
-//  char buf[16];
   
   if ( damage[7] > 0) {
     offset = 4;
@@ -38,7 +35,6 @@ int dispComputer() {
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(8, 0, "LIBRARY COMPUTER", 1);
     for (int i = offset; i < 6; i++) {
-//      strcpy_P( buf, (char*)pgm_read_word(&(computer_table[i])));
       prints(8, i + 3, rfsp( COMPUTER_BASE_ID + i ), curs == i);
     }
     arduboy.display();
@@ -62,9 +58,7 @@ int dispComputer() {
           degree = radius / 2 / 3.1415 * 360;
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2));
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
           c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
             d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
@@ -82,9 +76,7 @@ int dispComputer() {
           degree = radius / 2 / 3.1415 * 360;
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
           c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
             d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
@@ -96,7 +88,6 @@ int dispComputer() {
           launchTorpedo( 1 );
           break;
         case 3:
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
           d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 100, 0 );
           selfRepair( d );
 /*
@@ -143,7 +134,6 @@ void dispGalaxy() {
 
 void dispMain() {
   int go = 0;
-//  char buf[16];
   int c, d;
   double total;
   point sectorCurs;
@@ -167,9 +157,7 @@ void dispMain() {
           arduboy.display();
           break;
         case 1: //warp engine
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
           c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), 0, 1 );
-//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
             d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
           } else {
@@ -187,6 +175,8 @@ void dispMain() {
         case 3: //phaser
           if ( damage[4] > 0 ) {
 
+            alert(0, 4, 2);
+/*
             openWindow();
             font3x5.setTextColor(WHITE);
             font3x5.setCursor(20, 20);
@@ -194,12 +184,8 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
-
-//            strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[4])));
-//            windowAnimation( chrBuff );
-
+*/
           } else {
-//            strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
             d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 0, 0 );
             firePhaser( d );
             repairMechanism();
@@ -208,6 +194,8 @@ void dispMain() {
           break;
         case 4: //shield
           if ( damage[5] > 0 ) {
+            alert(0, 5, 2);
+/*
             openWindow();
             font3x5.setTextColor(WHITE);
             font3x5.setCursor(20, 20);
@@ -215,8 +203,8 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
+*/
           } else {
-//            strcpy_P( buf, (char*)pgm_read_word(&(string_table[3])));
             c = askAmount( 0, 100, rfsp( ALERT_BASE_ID + 3), 50, 0 );
             total = enterprise.energy + enterprise.shield;
             enterprise.shield = total * c / 100;
@@ -229,6 +217,8 @@ void dispMain() {
           break;
         case 6: //probe
           if ( damage[6] > 0 ) {
+            alert(0, 6, 2);
+/*
             openWindow();
             font3x5.setTextColor(WHITE);
             font3x5.setCursor(20, 20);
@@ -236,7 +226,10 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
+*/
           } else if ( sectorJamming == 1) {
+            alert(0, 8, 0);
+/*
             openWindow();
             font3x5.setTextColor(WHITE);
             font3x5.setCursor(20, 20);
@@ -244,6 +237,7 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
+*/
           } else {
             probe();
           }
@@ -388,13 +382,14 @@ void moveEnterprise( int deg, int dist ) {
 }
 
 void launchTorpedo( int m ) {
-//  char buf[16];
   int ans;
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
 
   if ( damage[3] > 0 ) {
+    alert(0,4,2);
+/*
     openWindow();
     font3x5.setTextColor(WHITE);
     font3x5.setCursor(20, 20);
@@ -402,7 +397,10 @@ void launchTorpedo( int m ) {
     arduboy.display();
     waitA();
     closeWindow();
+*/
   } else if ( enterprise.torpedo == 0) {
+    alert(0,8,1);
+/*
     openWindow();
     font3x5.setTextColor(WHITE);
     font3x5.setCursor(20, 20);
@@ -410,9 +408,9 @@ void launchTorpedo( int m ) {
     arduboy.display();
     waitA();
     closeWindow();
+*/
   } else {
     if ( m == 0 ) {
-//      strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
       c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), 0, 1 );
       fireTorpedo( c );
     } else {
@@ -424,7 +422,6 @@ void launchTorpedo( int m ) {
       radius = atan2( dy, dx );
       degree = radius / 2 / 3.1415 * 360;
       if (degree < 0) degree += 360;
-//      strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
       c = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
       fireTorpedo( c );
     }

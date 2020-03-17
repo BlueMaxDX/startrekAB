@@ -71,37 +71,38 @@ int getQuadrant() {
 }
 
 void damageMechanism(){
-//  char buf[13];
   int r = random(8);
   damage[r] += 5 + random(10);
   if(r == 5){
     enterprise.energy += enterprise.shield;
     enterprise.shield = 0;
   }
-  openWindow();
+  alert(1,r,0);
+/*  openWindow();
   font3x5.setCursor( 20, 20 );
-//  strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[r])));
   font3x5.print( rfsp( MECHANISM_BASE_ID + r) );
   font3x5.setCursor( 22, 27 );
   font3x5.print( F("IS DAMAGED!") );
   arduboy.display();
   waitA();
   closeWindow();
+*/
 }
 
 void repairMechanism(){
-//  char buf[13];
   for(int i=0; i<8; i++){
     if( damage[i] == 1 ){
+      alert(0,i,1);
+/*
       openWindow();
       font3x5.setCursor( 20, 20 );
-//      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
       font3x5.print( rfsp( MECHANISM_BASE_ID + i) );
       font3x5.setCursor( 22, 27 );
       font3x5.print( F("IS REPAIRED!") );
       arduboy.display();
       waitA();
       closeWindow();
+*/
     }
   }
   for(int i=0; i<8; i++){
