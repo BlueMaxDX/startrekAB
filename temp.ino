@@ -80,7 +80,7 @@ void damageMechanism(){
   }
   openWindow();
   font3x5.setCursor( 20, 20 );
-  strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[r])));
+//  strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[r])));
   font3x5.print( buf );
   font3x5.setCursor( 22, 27 );
   font3x5.print( F("IS DAMAGED!") );
@@ -95,7 +95,7 @@ void repairMechanism(){
     if( damage[i] == 1 ){
       openWindow();
       font3x5.setCursor( 20, 20 );
-      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
+//      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
       font3x5.print( buf );
       font3x5.setCursor( 22, 27 );
       font3x5.print( F("IS REPAIRED!") );

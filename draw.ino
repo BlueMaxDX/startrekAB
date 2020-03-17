@@ -43,7 +43,7 @@ void drawGalaxy() {
 void drawMenu() {
   char buf[4];
   for (int i = 0; i < 8; i++) {
-    strcpy_P( buf, (char*)pgm_read_word(&(menu_table[i])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(menu_table[i])));
     prints(i * 4, 8, buf, (gcurs == i));
   }
 }

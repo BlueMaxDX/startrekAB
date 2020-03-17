@@ -1,18 +1,18 @@
 void title() {
-  char buf[160];
+//  char buf[160];
   arduboy.clear();
-  strcpy_P( buf, (char*)pgm_read_word(&(string_table[9])));
+//  strcpy_P( buf, (char*)pgm_read_word(&(string_table[9])));
   for(int i=0; i < 128; i++){
     arduboy.clear();
     font3x5.setCursor(i-125, 7);
-    font3x5.print( buf );
+    font3x5.print( rfsp( 0 ) );
     arduboy.display();
     delay(pow(i/8,2));
     arduboy.pollButtons();
     if (arduboy.justPressed(A_BUTTON)) {
       arduboy.clear();
       font3x5.setCursor(2,7);
-      font3x5.print( buf );
+      font3x5.print( rfsp( 0 ) );
       arduboy.display();
       break;
     }
@@ -24,17 +24,26 @@ void title() {
 }
 
 void toEnterprise( int mes ){
-  char buf[96], buf2[96];
+//  char buf[96], buf2[96];
+
+  SlowPrinter printer;
+  
   arduboy.clear();
   font3x5.setTextColor(WHITE);
-  if(mes==1){
-    strcpy_P( buf2, (char*)pgm_read_word(&(string_table[ 5 ])));
-    sprintf( buf, buf2, totalKlingon, totalBase );
-  } else {
-    strcpy_P( buf, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
-  }
   font3x5.setCursor(12,7);
-  
+  if(mes==1){
+//    strcpy_P( buf2, (char*)pgm_read_word(&(string_table[ 5 ])));
+//    sprintf( buf, buf2, totalKlingon, totalBase );
+    printer.slowPrint( rfsp( 1 ) );
+    printer.slowPrint( totalKlingon );
+    printer.slowPrint( rfsp( 2 ) );
+    printer.slowPrint( totalKlingon );
+    printer.slowPrint( rfsp( 3 ) );
+  } else {
+    printer.slowPrint( rfsp( mes + 3 ) );
+    //    strcpy_P( buf, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
+  }
+/*  
   for( int i=0; i < strlen( buf ); i++){
     font3x5.print( buf[i] );
     arduboy.display();
@@ -47,6 +56,7 @@ void toEnterprise( int mes ){
       break;
     }
   }
+*/
   while(1){
     arduboy.pollButtons();
     if (arduboy.justPressed(A_BUTTON)) {

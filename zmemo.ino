@@ -92,22 +92,22 @@ void configuration() {
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(10, 0, "CONFIGURATION", 1);
     for (int i = 0; i < 6; i++) {
-      strcpy_P( buf, (char*)pgm_read_word(&(config_table[i])));
+//      strcpy_P( buf, (char*)pgm_read_word(&(config_table[i])));
       prints(4, i + 2, buf, curs == i);
     }
-    strcpy_P( buf, (char*)pgm_read_word(&(config_table[6])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(config_table[6])));
     prints(10, 8, buf, curs == 6);
 
     font3x5.setTextColor(WHITE);
     font3x5.setCursor(80, 14); font3x5.print( totalKlingon );
     font3x5.setCursor(80, 21); font3x5.print( totalBase );
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[0 + supply])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[0 + supply])));
     prints(20, 4, buf, 0);
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + existBlackhole])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + existBlackhole])));
     prints(20, 5, buf, 0);
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + asteroid])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[2 + asteroid])));
     prints(20, 6, buf, 0);
-    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
+//    strcpy_P( buf, (char*)pgm_read_word(&(confItem_table[4 + jamming])));
     prints(20, 7, buf, 0);
     arduboy.display();
 
@@ -121,11 +121,11 @@ void configuration() {
     if (arduboy.justPressed(A_BUTTON)) {
       switch (curs) {
         case 0:
-          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
+//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
           totalKlingon = askAmount( 1, 99, buf, totalKlingon, 0 );
           break;
         case 1:
-          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
+//          strcpy_P( buf, (char*)pgm_read_word(&(string_table[4])));
           totalBase = askAmount( 0, 9, buf, totalBase, 0 );
           break;
         case 2:
@@ -156,7 +156,7 @@ void selfRepair( int d ){
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(8, 0, "SELF REPAIR", 1);
     for (int i = 0; i < 8; i++) {
-      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
+//      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
       prints(6, i + 1, buf, (damage[i] > 0));
       font3x5.print(F("    "));
       font3x5.setTextColor(WHITE);
