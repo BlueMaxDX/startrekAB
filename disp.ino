@@ -28,7 +28,7 @@ int dispComputer() {
   float dx, dy, radius;
   int degree, dist;
   char buf[16];
-  
+
   if ( damage[7] > 0) {
     offset = 4;
     curs = 4;
@@ -194,10 +194,6 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
-
-//            strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[4])));
-//            windowAnimation( chrBuff );
-
           } else {
             strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
             d = askAmount( 0, enterprise.energy, buf, 0, 0 );
@@ -283,7 +279,7 @@ void moveEnterprise( int deg, int dist ) {
 
   float brad;
   int bdeg, dd;
-  
+
   gdock = 0;
   enterprise.energy -= dist;
   if ( dist > 9 ) {
@@ -298,7 +294,7 @@ void moveEnterprise( int deg, int dist ) {
     if ( (deg - bdeg + 360)%360 < 180){
       dd = 359;
     } else if ((deg - bdeg + 360)%360 == 180){
-      dd = 0;    
+      dd = 0;
     } else {
       dd = 1;
     }
@@ -450,14 +446,14 @@ void fireTorpedo( int deg ) {
     if ( (deg - bdeg + 360)%360 < 180){
       dd = 359;
     } else if ((deg - bdeg + 360)%360 == 180){
-      dd = 0;    
+      dd = 0;
     } else {
       dd = 1;
     }
   } else {
     dd = 0;
   }
-  
+
   enterprise.torpedo -= 1;
   while (1) {
 //    arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);

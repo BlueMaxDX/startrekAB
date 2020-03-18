@@ -240,35 +240,6 @@ int askAmount( int minimum, int maximum, char* message, int def, int m ) {
   }
 }
 
-void windowAnimation( char *mess) {
-  for (int i = 1; i < 10; i++) {
-    arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
-    arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
-    arduboy.display();
-    delay(SPEED / 2);
-  }
-  font3x5.setCursor(20, 20);
-  font3x5.print( mess );
-  arduboy.display();
-  while (1) {
-    arduboy.pollButtons();
-    if (arduboy.justPressed(A_BUTTON)) {
-      break;
-    }
-  }
-  for (int i = 9; i > 0; i--) {
-    arduboy.clear();
-    updateMain();
-    arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
-    arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
-    arduboy.display();
-    delay(SPEED / 2);
-  }
-  arduboy.clear();
-  updateMain();
-  arduboy.display();
-}
-
 void openWindow() {
   for (int i = 1; i < 10; i++) {
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
