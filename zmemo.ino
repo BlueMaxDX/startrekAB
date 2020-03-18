@@ -49,22 +49,10 @@ void warpQuadrant( byte x, byte y, int deg ) {
   initSector(enterprise.quadrant.x, enterprise.quadrant.y);
   longRangeSensor(enterprise.quadrant.x, enterprise.quadrant.y);
   if( sBlackhole == 1 ){
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("STRONG GRAVITY\nFIELD OBSERVED"));
-    arduboy.display();
-    waitA();
-    closeWindow();
+    alertWindow(F("STRONG GRAVITY\nFIELD OBSERVED"));
   }
   if( sectorJamming == 1 ){
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("JAMMING DETECTED"));
-    arduboy.display();
-    waitA();
-    closeWindow();
+    alertWindow(F("JAMMING DETECTED"));
   }
 }
 

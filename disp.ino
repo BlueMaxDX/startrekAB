@@ -186,14 +186,7 @@ void dispMain() {
           break;
         case 3: //phaser
           if ( damage[4] > 0 ) {
-
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("PHASER IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
+            alertWindow(F("PHASER IS DAMAGED!"));
           } else {
             strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
             d = askAmount( 0, enterprise.energy, buf, 0, 0 );
@@ -204,13 +197,7 @@ void dispMain() {
           break;
         case 4: //shield
           if ( damage[5] > 0 ) {
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("SHIELD IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
+            alertWindow(F("SHIELD IS DAMAGED!"));
           } else {
             strcpy_P( buf, (char*)pgm_read_word(&(string_table[3])));
             c = askAmount( 0, 100, buf, 50, 0 );
@@ -225,21 +212,9 @@ void dispMain() {
           break;
         case 6: //probe
           if ( damage[6] > 0 ) {
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("PROBE IS DAMAGED!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
+            alertWindow(F("PROBE IS DAMAGED!"));
           } else if ( sectorJamming == 1) {
-            openWindow();
-            font3x5.setTextColor(WHITE);
-            font3x5.setCursor(20, 20);
-            font3x5.print(F("JAMMING!"));
-            arduboy.display();
-            waitA();
-            closeWindow();
+            alertWindow(F("JAMMING!"));
           } else {
             probe();
           }
@@ -391,21 +366,9 @@ void launchTorpedo( int m ) {
   int degree, dist;
 
   if ( damage[3] > 0 ) {
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("TORPEDO IS DAMAGED!"));
-    arduboy.display();
-    waitA();
-    closeWindow();
+    alertWindow(F("TORPEDO IS DAMAGED!"));
   } else if ( enterprise.torpedo == 0) {
-    openWindow();
-    font3x5.setTextColor(WHITE);
-    font3x5.setCursor(20, 20);
-    font3x5.print(F("TORPEDO IS EMPTY!"));
-    arduboy.display();
-    waitA();
-    closeWindow();
+    alertWindow(F("TORPEDO IS EMPTY!"));
   } else {
     if ( m == 0 ) {
       strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));

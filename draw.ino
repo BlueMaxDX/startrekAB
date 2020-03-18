@@ -263,3 +263,13 @@ void closeWindow() {
   updateMain();
   arduboy.display();
 }
+
+void alertWindow(const __FlashStringHelper *msg) {
+  openWindow();
+  font3x5.setTextColor(WHITE);
+  font3x5.setCursor(20, 20);
+  font3x5.print(msg);
+  arduboy.display();
+  waitA();
+  closeWindow();
+}
