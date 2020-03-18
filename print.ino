@@ -1,4 +1,4 @@
-void prints(int8_t x, int8_t y, FlashStringHelper message, bool inv) {
+void prints(int8_t x, int8_t y, FlashStringHelper message, bool invert) {
   int counter=0;
   const char * pointer;
   pointer = reinterpret_cast<const char *>(message);
@@ -10,38 +10,35 @@ void prints(int8_t x, int8_t y, FlashStringHelper message, bool inv) {
     counter++;
   }
   font3x5.setCursor( x*4+1, y*7 );
-  if(inv == 0){
-    font3x5.setTextColor(WHITE);
-    font3x5.print( message );
-  } else {
+  if(invert){
     arduboy.fillRect( x*4, y*7, counter*4+1, 7,WHITE);
     font3x5.setTextColor(BLACK);
-    font3x5.print( message );
+  } else {
+    font3x5.setTextColor(WHITE);
   }
+  font3x5.print( message );
 }
 
-void prints(int8_t x, int8_t y, char * message, bool inv) {
+void prints(int8_t x, int8_t y, char * message, bool invert) {
   font3x5.setCursor( x*4+1, y*7 );
-  if(inv == 0){
-    font3x5.setTextColor(WHITE);
-    font3x5.print( message );
-  } else {
+  if(invert){
     arduboy.fillRect( x*4, y*7, strlen(message)*4+1, 7,WHITE);
     font3x5.setTextColor(BLACK);
-    font3x5.print( message );
+  } else {
+    font3x5.setTextColor(WHITE);
   }
+  font3x5.print( message );
 }
 
-void prints(int8_t x, uint8_t y, int d, bool inv){
+void prints(int8_t x, uint8_t y, int d, bool invert){
   font3x5.setCursor( x*4+1, y*7 );
-  if(inv == 0){
-    font3x5.setTextColor(WHITE);
-    font3x5.print( d );
-  } else {
+  if(invert){
     arduboy.fillRect( x*4, y*7, intlen( d )*4+1, 7,WHITE);
     font3x5.setTextColor(BLACK);
-    font3x5.print( d );
+  } else {
+    font3x5.setTextColor(WHITE);
   }
+  font3x5.print( d );
 }
 
 // calculates the length of an integer by number of digits
