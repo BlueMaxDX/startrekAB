@@ -1,8 +1,8 @@
-void prints(int x, int y, FlashStringHelper message, bool inv) {
+void prints(int8_t x, int8_t y, FlashStringHelper message, bool inv) {
   int counter=0;
   const char * pointer;
   pointer = reinterpret_cast<const char *>(message);
-  
+
   while(true)
   if( pgm_read_byte(pointer + counter)=='\0'){
     break;
@@ -20,7 +20,7 @@ void prints(int x, int y, FlashStringHelper message, bool inv) {
   }
 }
 
-void prints(int x, int y, char * message, bool inv) {
+void prints(int8_t x, int8_t y, char * message, bool inv) {
   font3x5.setCursor( x*4+1, y*7 );
   if(inv == 0){
     font3x5.setTextColor(WHITE);
@@ -32,7 +32,7 @@ void prints(int x, int y, char * message, bool inv) {
   }
 }
 
-void prints(int x, int y, int d, bool inv){
+void prints(int8_t x, uint8_t y, int d, bool inv){
   font3x5.setCursor( x*4+1, y*7 );
   if(inv == 0){
     font3x5.setTextColor(WHITE);
