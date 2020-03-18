@@ -216,23 +216,33 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
       return result;
     }
     if (m == 0) {
-      ratio = (float)result / (float)maximum;
-      border = ratio * 64 ;
-      arduboy.drawRect(30, 30, 68, 5, WHITE);
-      arduboy.fillRect(32, 32, border, 1, WHITE);
-      arduboy.fillRect(32 + border + 1, 32, 64 - border, 1, BLACK);
-      font3x5.setCursor( 30, 38);
-      font3x5.print( minimum );
-      font3x5.setCursor( 60, 38);
-      font3x5.print( result );
-      font3x5.setCursor( 90, 38);
-      font3x5.print( maximum );
+      if(result == 0) {
+        font3x5.setCursor( 52, 32);
+        font3x5.print( F("CANCEL") );
+      } else {
+        ratio = (float)result / (float)maximum;
+        border = ratio * 64 ;
+        arduboy.drawRect(30, 30, 68, 5, WHITE);
+        arduboy.fillRect(32, 32, border, 1, WHITE);
+        arduboy.fillRect(32 + border + 1, 32, 64 - border, 1, BLACK);
+        font3x5.setCursor( 30, 38);
+        font3x5.print( minimum );
+        font3x5.setCursor( 60, 38);
+        font3x5.print( result );
+        font3x5.setCursor( 90, 38);
+        font3x5.print( maximum );
+      }
     } else {
-      arduboy.drawFastVLine(64, 20, 24, WHITE);
-      arduboy.drawFastHLine(52, 32, 24, WHITE);
-      arduboy.fillRect( 64 + 10 * cos(2 * 3.1415 * result / 360) - 1, 32 + 10 * sin(2 * 3.1415 * result / 360) - 1, 3, 3, WHITE);
-      font3x5.setCursor( 90, 38);
-      font3x5.print( result );
+      if(result==360){
+        font3x5.setCursor( 52, 32);
+        font3x5.print( F("CANCEL") );
+      } else {
+        arduboy.drawFastVLine(64, 20, 24, WHITE);
+        arduboy.drawFastHLine(52, 32, 24, WHITE);
+        arduboy.fillRect( 64 + 10 * cos(2 * 3.1415 * result / 360) - 1, 32 + 10 * sin(2 * 3.1415 * result / 360) - 1, 3, 3, WHITE);
+        font3x5.setCursor( 90, 38);
+        font3x5.print( result );
+      }
     }
     arduboy.display();
   }

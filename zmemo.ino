@@ -105,7 +105,7 @@ void configuration() {
           totalKlingon = askAmount( 1, 99, rfsp( ALERT_BASE_ID + 4), totalKlingon, 0 );
           break;
         case 1:
-          totalBase = askAmount( 0, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
+          totalBase = askAmount( 1, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
           break;
         case 2:
           supply = !supply;
