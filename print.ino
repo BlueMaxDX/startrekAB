@@ -1,15 +1,11 @@
 int strlenF(FlashStringHelper message) {
-  int counter=0;
-  const char * pointer;
-  pointer = reinterpret_cast<const char *>(message);
+  int len = 0;
+  const char * pointer = reinterpret_cast<const char *>(message);
 
-  while(true)
-  if( pgm_read_byte(pointer + counter)=='\0'){
-    break;
-  } else {
-    counter++;
+  while( pgm_read_byte(pointer + len) != '\0'){
+    len++;
   }
-  return counter;
+  return len;
 }
 
 void prints(int8_t x, int8_t y, FlashStringHelper message, bool invert) {
