@@ -1,4 +1,4 @@
-void prints(int8_t x, int8_t y, FlashStringHelper message, bool invert) {
+int strlenF(FlashStringHelper message) {
   int counter=0;
   const char * pointer;
   pointer = reinterpret_cast<const char *>(message);
@@ -9,9 +9,15 @@ void prints(int8_t x, int8_t y, FlashStringHelper message, bool invert) {
   } else {
     counter++;
   }
+  return counter;
+}
+
+void prints(int8_t x, int8_t y, FlashStringHelper message, bool invert) {
+  int length = strlenF(message);
+
   font3x5.setCursor( x*4+1, y*7 );
   if(invert){
-    arduboy.fillRect( x*4, y*7, counter*4+1, 7,WHITE);
+    arduboy.fillRect( x*4, y*7, length*4+1, 7,WHITE);
     font3x5.setTextColor(BLACK);
   } else {
     font3x5.setTextColor(WHITE);
