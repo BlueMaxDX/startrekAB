@@ -364,7 +364,7 @@ int launchTorpedo( int m ) {
   int degree, dist;
 
   if ( damage[3] > 0 ) {
-    alert(0,4,2);
+    alert(0,3,2);
     return 1;
   } else if ( enterprise.torpedo == 0) {
     alert(0,8,1);
