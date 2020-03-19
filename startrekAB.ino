@@ -47,16 +47,16 @@ byte sector[8][8] = {};
 byte totalKlingon = 25, totalBase = 3;
 byte gcurs=0, gKlingon=0;
 int days=250;
-bool gdock = 0;
+bool gdock = false;
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 
-bool supply = 0;
-bool existBlackhole = 0;
-bool sBlackhole = 0;
-bool jamming = 0;
-bool sectorJamming = 0;
-bool asteroid = 0;
+bool supply = false;
+bool existBlackhole = false;
+bool sBlackhole = false;
+bool jamming = false;
+bool sectorJamming = false;
+bool asteroid = false;
 
 ship klingon[3];
 point base;
@@ -68,7 +68,7 @@ point blackhole;
 class SlowPrinter {
 private:
   bool quick = false;
-  
+
   void checkDelay() {
     if(!quick) {
       delay(100);
@@ -78,7 +78,7 @@ private:
       }
     }
   }
-  
+
 public:
   void slowPrint(FlashStringHelper message) {
     const char * pointer = reinterpret_cast<const char *>(message);
@@ -86,10 +86,10 @@ public:
     while(true) {
       char c = pgm_read_byte(pointer);
       ++pointer;
-      
+
       if(c == '\0')
         break;
-        
+
       font3x5.print(c);
       arduboy.display();
 
@@ -97,21 +97,21 @@ public:
     }
   }
 
-  void slowPrint(uint8_t value) {  
+  void slowPrint(uint8_t value) {
     if(value == 0) {
       font3x5.print('0');
       arduboy.display();
       checkDelay();
       return;
     }
-  
+
     uint8_t digits[3];
 
     for(uint8_t i = 0; i < 3; ++i) {
       digits[(3 - 1) - i] = (value % 10);
       value /= 10;
     }
-    
+
     for(uint8_t i = 0; i < 3; ++i) {
       if(digits[i] > 0) {
         printDigit(digits[i]);
@@ -121,7 +121,7 @@ public:
       checkDelay();
     }
   }
-  
+
   void printDigit(uint8_t digit) {
     static constexpr char digits[] PROGMEM {
       '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
