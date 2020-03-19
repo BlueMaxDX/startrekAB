@@ -139,17 +139,34 @@ void setup() {
   arduboy.initRandomSeed();
 }
 
-void loop() {
+void startNewGame() {
   days = 250;
   totalKlingon = 25;
   totalBase = 3;
-  title();
   configuration();
   initQuadrant();
   initEnterprise();
   initSector(enterprise.quadrant.x, enterprise.quadrant.y);
-  toEnterprise(1);
-  dispMain();
-  toEnterprise( gloop + 1 );
+
   gloop=0;
+}
+
+void welcomeMessage() {
+  toEnterprise(1);
+}
+
+void gameOverMessage() {
+  toEnterprise( gloop + 1 );
+}
+
+// this is not a conventional Arduboy loop, but it's what we have for now
+// anytime a game is ended a new game will begin immediately by showing
+// the title 
+void loop() {
+  title();
+  startNewGame();
+  welcomeMessage();
+
+  dispMain(); // this is the main game loop
+  gameOverMessage();
 }
