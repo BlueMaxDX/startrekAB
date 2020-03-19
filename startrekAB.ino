@@ -51,7 +51,7 @@ bool gdock = false;
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 
-bool supply = false;
+bool resupplyOnlyOnce = false;
 bool existBlackhole = false;
 bool sBlackhole = false;
 bool jamming = false;

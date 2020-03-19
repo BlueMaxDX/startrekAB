@@ -86,7 +86,7 @@ void configuration() {
     font3x5.setTextColor(WHITE);
     font3x5.setCursor(80, 14); font3x5.print( totalKlingon );
     font3x5.setCursor(80, 21); font3x5.print( totalBase );
-    prints(20, 4, rfsp( CONFITEM_BASE_ID + supply), 0);
+    prints(20, 4, rfsp( CONFITEM_BASE_ID + resupplyOnlyOnce), 0);
     prints(20, 5, rfsp( CONFITEM_BASE_ID + 2 + existBlackhole), 0);
     prints(20, 6, rfsp( CONFITEM_BASE_ID + 2 + asteroid), 0);
     prints(20, 7, rfsp( CONFITEM_BASE_ID + 4 + jamming), 0);
@@ -108,7 +108,7 @@ void configuration() {
           totalBase = askAmount( 1, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
           break;
         case 2:
-          supply = !supply;
+          resupplyOnlyOnce = !resupplyOnlyOnce;
           break;
         case 3:
           existBlackhole = !existBlackhole;
@@ -178,7 +178,7 @@ void alert( int lev, int mec, int con ) {
     font3x5.print( rfsp( MESSAGE_BASE_ID + con ) );
   }
   arduboy.display();
-  
+
   waitA();
 
   closeWindow();
