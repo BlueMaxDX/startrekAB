@@ -326,7 +326,7 @@ void moveEnterprise( int deg, int dist ) {
       } else if (hit == 10) {
         gdock = 1;
         dockBase(); //dock base
-        if( supply == 1 ){
+        if( resupplyOnlyOnce ){
           sector[base.x][base.y] = 0;
           quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 16;
           totalBase -= 1;
