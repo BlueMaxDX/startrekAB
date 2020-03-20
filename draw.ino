@@ -168,11 +168,12 @@ void crashAnimation() {
 }
 
 int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int m ) {
-  int result = def;
+  int result = def - minimum;
   int delta = 0;
   int border;
   float ratio;
-
+  int d = maximum - minimum;
+  
   openWindow();
 
   while (1) {
@@ -187,21 +188,21 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
     arduboy.pollButtons();
     if (arduboy.pressed(LEFT_BUTTON)) {
       if ( delta < 10 ) {
-        result = (result + (maximum - 0) * ((delta % 10) == 0)) % (maximum+1);
+        result = (result + d * ((delta % 10) == 0)) % ( d + 1 );
       } else if ( delta > 10 && delta < 50) {
-        result = (result + (maximum - 0)) % (maximum+1);
+        result = (result + d ) % ( d + 1 );
       } else {
-        result = (result + (maximum - 0) * 5) % (maximum+1);
+        result = (result + d * 5) % ( d + 1 );
       }
       delta++;
     }
     if (arduboy.pressed(RIGHT_BUTTON)) {
       if ( delta < 10 ) {
-        result = (result + ((delta % 10) == 0)) % (maximum+1);
+        result = (result + ((delta % 10) == 0)) % ( d + 1 );
       } else if ( delta > 10 && delta < 50) {
-        result = (result + 1) % (maximum+1);
+        result = (result + 1) % ( d + 1 );
       } else {
-        result = (result + 5) % (maximum+1);
+        result = (result + 5) % ( d + 1 );
       }
       delta++;
     }
@@ -219,22 +220,22 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
     }
     if (arduboy.justPressed(A_BUTTON)) {
       closeWindow();
-      return result;
+      return result + minimum;
     }
     if (arduboy.justPressed(B_BUTTON)) {
       if( m == 0 ) {
-        result = 0;
+        result = minimum;
       } else {
         result = 360;
       }
-      return result;
+      return result + minimum;
     }
     if (m == 0) {
-      if(result == 0) {
+      if(result + minimum == 0) {
         font3x5.setCursor( 52, 32);
         font3x5.print( F("CANCEL") );
       } else {
-        ratio = (float)result / (float)maximum;
+        ratio = (float)result / (float)d;
         border = ratio * 64 ;
         arduboy.drawRect(30, 30, 68, 5, WHITE);
         arduboy.fillRect(32, 32, border, 1, WHITE);
@@ -242,7 +243,7 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
         font3x5.setCursor( 30, 38);
         font3x5.print( minimum );
         font3x5.setCursor( 60, 38);
-        font3x5.print( result );
+        font3x5.print( result + minimum );
         font3x5.setCursor( 90, 38);
         font3x5.print( maximum );
       }
