@@ -212,10 +212,10 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
       delta = 0;
     }
     if (arduboy.justPressed(UP_BUTTON)) {
-      result = (result + maximum / 10) % (maximum+1);;
+      result = (result + maximum / 10) % (maximum+1);
     }
     if (arduboy.justPressed(DOWN_BUTTON)) {
-      result = (result + maximum / 10 * 9 ) % (maximum+1);;
+      result = (result + maximum / 10 * 9 ) % (maximum+1);
     }
     if (arduboy.justPressed(A_BUTTON)) {
       closeWindow();
