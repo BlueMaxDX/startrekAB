@@ -17,7 +17,7 @@
 
 void warpQuadrant( byte x, byte y, int deg ) {
   deg += 180;
-  arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
+  arduboy.fillRoundRect(0, 0, 60, 56, 3, col(ginv));
   point dot[16];
   for (int i = 0; i < 16; i++) {
     dot[i].x = random(56) + 4;
@@ -25,7 +25,7 @@ void warpQuadrant( byte x, byte y, int deg ) {
   }
   for (int j = 0; j < 30; j++) {
     for (int i = 0; i < 16; i++) {
-      arduboy.drawPixel( dot[i].x + j * cos(2 * 3.1415 * deg / 360), dot[i].y + j * sin(2 * 3.1415 * deg / 360), WHITE);
+      arduboy.drawPixel( dot[i].x + j * cos(2 * 3.1415 * deg / 360), dot[i].y + j * sin(2 * 3.1415 * deg / 360), col(!ginv));
     }
     arduboy.display();
     delay(SPEED);
@@ -33,7 +33,7 @@ void warpQuadrant( byte x, byte y, int deg ) {
   delay(200);
   for (int j = 29; j > 0; j--) {
     for (int i = 0; i < 16; i++) {
-      arduboy.drawPixel( dot[i].x + j * cos(2 * 3.1415 * deg / 360), dot[i].y + j * sin(2 * 3.1415 * deg / 360), BLACK);
+      arduboy.drawPixel( dot[i].x + j * cos(2 * 3.1415 * deg / 360), dot[i].y + j * sin(2 * 3.1415 * deg / 360), col(ginv));
     }
     arduboy.display();
     delay(SPEED);

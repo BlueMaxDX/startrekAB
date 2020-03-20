@@ -25,7 +25,7 @@ int dispComputer() {
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
-  
+
   if ( damage[7] > 0) {
     offset = 4;
     curs = 4;
@@ -58,15 +58,15 @@ int dispComputer() {
           degree = radius / 2 / 3.1415 * 360;
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2));
-          while(true){
+          while (true) {
             c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-            if(c==360) return 1;
+            if (c == 360) return 1;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
             }
-            if(d==0) return 1;
+            if (d == 0) return 1;
             moveEnterprise( c, d );
             break;
           }
@@ -81,23 +81,23 @@ int dispComputer() {
           degree = radius / 2 / 3.1415 * 360;
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
-          while(true){
+          while (true) {
             c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-            if(c==360) return 1;
+            if (c == 360) return 1;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
             }
-            if(d==0) return 1;
+            if (d == 0) return 1;
             moveEnterprise( c, d );
             break;
           }
           break;
         case 2:
-          if( launchTorpedo( 1 ) == 1){
+          if ( launchTorpedo( 1 ) == 1) {
             return 1;
-          } 
+          }
           break;
         case 3:
           d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), 100, 0 );
@@ -112,7 +112,7 @@ int dispComputer() {
           updateMain();
           arduboy.display();
           return 1;
-//          break;
+        //          break;
         case 5:
           arduboy.clear();
           arduboy.display();
@@ -120,7 +120,7 @@ int dispComputer() {
           break;
       }
       return 0;
-//      break;
+      //      break;
     }
   }
 }
@@ -167,15 +167,15 @@ void dispMain() {
           arduboy.display();
           break;
         case 1: //warp engine
-          while(true){
+          while (true) {
             c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), 0, 1 );
-            if(c==360) break;
+            if (c == 360) break;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             }
-            if(d==0) break;
+            if (d == 0) break;
             moveEnterprise( c, d );
             repairMechanism();
             klingonAttack();
@@ -183,7 +183,7 @@ void dispMain() {
           }
           break;
         case 2: //photon torpedo
-          if( launchTorpedo( 0 ) == 1){
+          if ( launchTorpedo( 0 ) == 1) {
             break;;
           } else {
             repairMechanism();
@@ -194,9 +194,9 @@ void dispMain() {
           if ( damage[4] > 0 ) {
             alert(0, 4, 2);
           } else {
-            while(true){
+            while (true) {
               d = askAmount( 0, enterprise.energy, rfsp( ALERT_BASE_ID + 2), enterprise.energy / 5, 0 );
-              if(d==0) break;
+              if (d == 0) break;
               firePhaser( d );
               repairMechanism();
               klingonAttack();
@@ -228,16 +228,16 @@ void dispMain() {
           }
           break;
         case 7: //library computer
-          if( dispComputer()==0 ){
+          if ( dispComputer() == 0 ) {
             repairMechanism();
             klingonAttack();
           }
           break;
       }
       days--;
-      if( days < 0 ) gloop = 1;
-      if( enterprise.energy < 0 ) gloop = 2;
-      if( totalKlingon == 0 ) gloop = 3;
+      if ( days < 0 ) gloop = 1;
+      if ( enterprise.energy < 0 ) gloop = 2;
+      if ( totalKlingon == 0 ) gloop = 3;
     }
     arduboy.display();
   }
@@ -255,7 +255,7 @@ void moveEnterprise( int deg, int dist ) {
 
   float brad;
   int bdeg, dd;
-  
+
   gdock = 0;
   enterprise.energy -= dist;
   if ( dist > 9 ) {
@@ -263,14 +263,14 @@ void moveEnterprise( int deg, int dist ) {
     dist = 2;
   }
 
-  if(sBlackhole == 1){
+  if (sBlackhole == 1) {
     brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
     bdeg = brad / 2 / 3.1415 * 360;
     if (bdeg < 0) bdeg += 360;
-    if ( (deg - bdeg + 360)%360 < 180){
+    if ( (deg - bdeg + 360) % 360 < 180) {
       dd = 359;
-    } else if ((deg - bdeg + 360)%360 == 180){
-      dd = 0;    
+    } else if ((deg - bdeg + 360) % 360 == 180) {
+      dd = 0;
     } else {
       dd = 1;
     }
@@ -280,7 +280,7 @@ void moveEnterprise( int deg, int dist ) {
 
   for ( int n = 0; n < dist * (7 + (dist < 5)); n++) {
     sector[enterprise.sector.x][enterprise.sector.y] = 0;
-    deg = (deg + dd)%360;
+    deg = (deg + dd) % 360;
     xa = n * cos(2 * 3.1415 * deg / 360);
     ya = n * sin(2 * 3.1415 * deg / 360);
 
@@ -312,23 +312,23 @@ void moveEnterprise( int deg, int dist ) {
       enterprise.sector.x = xs;
       enterprise.sector.y = ys;
       warp = 0;
-      if( hit >1 && hit < 10 ){
+      if ( hit > 1 && hit < 10 ) {
         crashAnimation();
         r = random(200);
-        klingon[hit-2].energy -= r;
+        klingon[hit - 2].energy -= r;
         hitEnterprise( random( 200 ) );
         if (klingon[hit - 2].energy < 0) {
-          bombAnimation(klingon[hit-2].sector.x,klingon[hit-2].sector.y);
-          sector[klingon[hit-2].sector.x][klingon[hit-2].sector.y] = 0;
+          bombAnimation(klingon[hit - 2].sector.x, klingon[hit - 2].sector.y);
+          sector[klingon[hit - 2].sector.x][klingon[hit - 2].sector.y] = 0;
           gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
-          if(gKlingon == 0) sectorJamming = 0;
+          if (gKlingon == 0) sectorJamming = 0;
           totalKlingon--;
         }
         if (enterprise.shield == 0) damageMechanism();
       } else if (hit == 10) {
         gdock = 1;
         dockBase(); //dock base
-        if( supply == 1 ){
+        if ( supply == 1 ) {
           sector[base.x][base.y] = 0;
           quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 16;
           totalBase -= 1;
@@ -367,15 +367,15 @@ int launchTorpedo( int m ) {
   int degree, dist;
 
   if ( damage[3] > 0 ) {
-    alert(0,3,2);
+    alert(0, 3, 2);
     return 1;
   } else if ( enterprise.torpedo == 0) {
-    alert(0,8,1);
+    alert(0, 8, 1);
     return 1;
   } else {
     if ( m == 0 ) {
       c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), 0, 1 );
-      if(c == 360) {
+      if (c == 360) {
         return 1;
       } else {
         fireTorpedo( c );
@@ -391,7 +391,7 @@ int launchTorpedo( int m ) {
       degree = radius / 2 / 3.1415 * 360;
       if (degree < 0) degree += 360;
       c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-      if(c == 360) {
+      if (c == 360) {
         return 1;
       } else {
         fireTorpedo( c );
@@ -413,25 +413,25 @@ void fireTorpedo( int deg ) {
   float brad;
   int bdeg, dd;
 
-  if(sBlackhole == 1){
+  if (sBlackhole == 1) {
     brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
     bdeg = brad / 2 / 3.1415 * 360;
     if (bdeg < 0) bdeg += 360;
-    if ( (deg - bdeg + 360)%360 < 180){
+    if ( (deg - bdeg + 360) % 360 < 180) {
       dd = 359;
-    } else if ((deg - bdeg + 360)%360 == 180){
-      dd = 0;    
+    } else if ((deg - bdeg + 360) % 360 == 180) {
+      dd = 0;
     } else {
       dd = 1;
     }
   } else {
     dd = 0;
   }
-  
+
   enterprise.torpedo -= 1;
   while (1) {
-//    arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
-    deg = (deg + dd)%360;
+    //    arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
+    deg = (deg + dd) % 360;
     xa = n * cos(2 * 3.1415 * deg / 360);
     ya = n * sin(2 * 3.1415 * deg / 360);
 
@@ -448,7 +448,7 @@ void fireTorpedo( int deg ) {
       if (klingon[sector[xs][ys] - 2].energy < 0) {
         sector[xs][ys] = 0;
         gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
-        if(gKlingon == 0) sectorJamming = 0;
+        if (gKlingon == 0) sectorJamming = 0;
         totalKlingon--;
       }
       break;
@@ -465,8 +465,11 @@ void fireTorpedo( int deg ) {
       break;  //hit star!
     }
     font3x5.setCursor(x + xa, y + ya);
+    font3x5.setTextColor(!ginv);
     font3x5.print('#');
-    arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);
+    arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, col(!ginv));
+    arduboy.drawLine(xs * 7 + 2, ys * 7, xs * 7 + 2 + 6, ys * 7, col(!ginv));
+    arduboy.drawLine(xs * 7 + 2, ys * 7 + 6, xs * 7 + 2 + 6, ys * 7 + 6, col(!ginv));
     arduboy.display();
     delay(SPEED);
     arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
@@ -483,12 +486,12 @@ void firePhaser( int energy ) {
   for (byte i = 0; i < k; i++) {
     dx = abs(klingon[i].sector.x - enterprise.sector.x);
     dy = abs(klingon[i].sector.y - enterprise.sector.y);
-    if( (damage[2]==0 || damage[6]==0) && sectorJamming == 0){
+    if ( (damage[2] == 0 || damage[6] == 0) && sectorJamming == 0) {
       chk = 1;
     } else {
-      chk = ((dx*dy == 1) || (dx+dy == 1));
+      chk = ((dx * dy == 1) || (dx + dy == 1));
     }
-    if ((klingon[i].energy > 0) && (chk==1)) {
+    if ((klingon[i].energy > 0) && (chk == 1)) {
       phaserAnimation(klingon[i].sector.x, klingon[i].sector.y);
       bombAnimation( klingon[i].sector.x, klingon[i].sector.y);
       //    int r = energy / numOfKlingon(quadrant[enterprise.quadrant.x][enterprise.quadrant.y]);
@@ -496,7 +499,7 @@ void firePhaser( int energy ) {
       if (klingon[i].energy < 0) {
         sector[klingon[i].sector.x][klingon[i].sector.y] = 0;
         gKlingon--;
-        if(gKlingon == 0) sectorJamming = 0;
+        if (gKlingon == 0) sectorJamming = 0;
         totalKlingon--;
       }
     }
@@ -511,7 +514,7 @@ void klingonAttack() {
   byte k = numOfKlingon(quadrant[enterprise.quadrant.x][enterprise.quadrant.y]);
 
   updateMain();
-  
+
   for (byte i = 0; i < k; i++) {
     if ( klingon[i].energy > 0) {
       xd = enterprise.sector.x - klingon[i].sector.x;
@@ -542,7 +545,7 @@ void klingonAttack() {
           if (klingon[sector[xs][ys] - 2].energy < 0) {
             sector[xs][ys] = 0;
             gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
-            if(gKlingon == 0) sectorJamming = 0;
+            if (gKlingon == 0) sectorJamming = 0;
             totalKlingon--;
           }
           break;
@@ -558,10 +561,13 @@ void klingonAttack() {
           quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 1;
           break;  //hit star!
         }
-        if( damage[2] == 0 && sectorJamming == 0){
+        if ( damage[2] == 0 && sectorJamming == 0) {
           font3x5.setCursor(x + xa, y + ya);
+          font3x5.setTextColor(!ginv);
           font3x5.print('#');
           arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, col(!ginv));
+          arduboy.drawLine(xs * 7 + 2, ys * 7, xs * 7 + 2 + 6, ys * 7, col(!ginv));
+          arduboy.drawLine(xs * 7 + 2, ys * 7 + 6, xs * 7 + 2 + 6, ys * 7 + 6, col(!ginv));
         }
         arduboy.display();
         delay(SPEED);

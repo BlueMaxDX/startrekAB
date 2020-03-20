@@ -8,9 +8,9 @@ int getSector() {
 
     updateMain();
 
-    arduboy.drawFastVLine(sectorCurs.x * 7 + 5, 0, 56, WHITE);
-    arduboy.drawFastHLine(1, sectorCurs.y * 7 + 3, 59, WHITE);
-
+    arduboy.drawFastVLine(sectorCurs.x * 7 + 5, 0, 56, col(!ginv));
+//    arduboy.drawFastHLine(0, sectorCurs.y * 7 + 3, 56, col(!ginv));
+    arduboy.drawLine(0, sectorCurs.y * 7 + 3,60, sectorCurs.y * 7 + 3,col(!ginv));
     if (arduboy.justPressed(LEFT_BUTTON)) {
       sectorCurs.x = (sectorCurs.x + 7) % 8;
     }

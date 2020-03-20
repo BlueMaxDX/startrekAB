@@ -150,7 +150,7 @@ void bombAnimation( byte x, byte y ) {
 void phaserAnimation( byte x, byte y ) {
   for (int i = 4; i > 0; i--) {
     updateMain();
-    arduboy.drawRect(x * 7 + 4 + 1 - i * 2, y * 7 + 3 - i * 2, i * 4, i * 4, WHITE);
+    arduboy.drawRect(x * 7 + 4 + 1 - i * 2, y * 7 + 3 - i * 2, i * 4, i * 4, col(!ginv));
     arduboy.display();
     delay(SPEED * 5);
     arduboy.clear();
