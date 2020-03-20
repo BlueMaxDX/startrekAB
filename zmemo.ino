@@ -17,7 +17,7 @@
 
 void warpQuadrant( byte x, byte y, int deg ) {
   deg += 180;
-  arduboy.fillRect(0, 0, 60, 56, BLACK);
+  arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
   point dot[16];
   for (int i = 0; i < 16; i++) {
     dot[i].x = random(56) + 4;

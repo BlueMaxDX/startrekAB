@@ -7,8 +7,10 @@
 #define numOfBase(q)    (q & 0b00010000)>>4
 #define numOfStar(q)    (q & 0b00001111)
 #define rfsp(id)        (readFlashStringPointer(&string[ id ]))
+#define col(a)          ( a ? 255 : 0 )
 
 #define SPEED 10
+
 /*
 galaxy[x,y]=0b00000000;
               || ||
@@ -57,6 +59,7 @@ bool sBlackhole = 0;
 bool jamming = 0;
 bool sectorJamming = 0;
 bool asteroid = 0;
+bool ginv = 1;
 
 ship klingon[3];
 point base;

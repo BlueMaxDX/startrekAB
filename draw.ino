@@ -49,7 +49,8 @@ void drawMenu() {
 void drawSRS(byte dx) {
   char c;
   int xs, xe, ys, ye;
-  font3x5.setTextColor(WHITE);
+  arduboy.fillRoundRect(0,0,60,56,3,col(ginv));
+  font3x5.setTextColor( !ginv );
   if (damage[2] > 0 || sectorJamming == 1) {
     xs = enterprise.sector.x - 1; if (xs < 0) xs = 0;
     xe = enterprise.sector.x + 1; if (xe > 7) xe = 7;
@@ -124,22 +125,22 @@ void drawStatus() {
 void bombAnimation( byte x, byte y ) {
   point bomb[3];
   for (int i = 0; i < 3; i++) {
-    bomb[i].x = x * 7 + random(5) + 3;  //arduboy.drawFastVLine(sectorCurs.x * 8 + 5, 0, 55, WHITE);
-    bomb[i].y = y * 7 + random(5) + 1;  //arduboy.drawFastHLine(1, sectorCurs.y * 7 + 3, 66, WHITE);
+    bomb[i].x = x * 7 + random(5) + 3;
+    bomb[i].y = y * 7 + random(5) + 1;
   }
   for (int i = 0; i < 6; i++) {
+    updateMain();
     for ( int j = 0; j < 3; j++) {
-      updateMain();
-      arduboy.drawCircle(bomb[j].x, bomb[j].y, i, WHITE);
+      arduboy.fillCircle(bomb[j].x, bomb[j].y, i, col(!ginv));
     }
 
     arduboy.display();
     delay(SPEED * 5);
   }
   for (int i = 0; i < 6; i++) {
+    updateMain();
     for ( int j = 0; j < 3; j++) {
-      updateMain();
-      arduboy.drawCircle(bomb[j].x, bomb[j].y, 6 - i, BLACK);
+      arduboy.fillCircle(bomb[j].x, bomb[j].y, 6 - i, col(!ginv));
     }
     arduboy.display();
     delay(SPEED * 5);
@@ -163,7 +164,7 @@ void crashAnimation() {
     drawSRS(random(8) - 4);
     arduboy.display();
     delay(SPEED);
-    arduboy.fillRect(0, 0, 65, 56, BLACK);
+    arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
   }
 }
 

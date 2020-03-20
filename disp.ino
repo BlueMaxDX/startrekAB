@@ -342,10 +342,11 @@ void moveEnterprise( int deg, int dist ) {
       break;
     }
     font3x5.setCursor(x + xa, y + ya);
+    font3x5.setTextColor( !ginv );
     font3x5.print('E');
     arduboy.display();
     delay(SPEED);
-    arduboy.fillRect(0, 0, 64, 55, BLACK);
+    arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
     drawSRS(0);
     sector[xs][ys] = 1;
     enterprise.sector.x = xs;
@@ -468,7 +469,7 @@ void fireTorpedo( int deg ) {
     arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);
     arduboy.display();
     delay(SPEED);
-    arduboy.fillRect(0, 0, 64, 56, BLACK);
+    arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
     drawSRS(0);
     n++;
   }
@@ -560,11 +561,11 @@ void klingonAttack() {
         if( damage[2] == 0 && sectorJamming == 0){
           font3x5.setCursor(x + xa, y + ya);
           font3x5.print('#');
-          arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);
+          arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, col(!ginv));
         }
         arduboy.display();
         delay(SPEED);
-        arduboy.fillRect(0, 0, 64, 56, BLACK);
+        arduboy.fillRoundRect(0, 0, 60, 56, 3, col(!ginv));
         drawSRS(0);
         n++;
       }
