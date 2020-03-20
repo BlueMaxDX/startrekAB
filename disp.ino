@@ -114,6 +114,8 @@ int dispComputer() {
           return 1;
 //          break;
         case 5:
+          arduboy.clear();
+          arduboy.display();
           gloop = 2;
           break;
       }
@@ -276,7 +278,7 @@ void moveEnterprise( int deg, int dist ) {
     dd = 0;
   }
 
-  for ( int n = 0; n < dist * 8; n++) {
+  for ( int n = 0; n < dist * (7 + (dist < 5)); n++) {
     sector[enterprise.sector.x][enterprise.sector.y] = 0;
     deg = (deg + dd)%360;
     xa = n * cos(2 * 3.1415 * deg / 360);
@@ -506,6 +508,9 @@ void klingonAttack() {
   float xd, yd;
   byte xs, ys;
   byte k = numOfKlingon(quadrant[enterprise.quadrant.x][enterprise.quadrant.y]);
+
+  updateMain();
+  
   for (byte i = 0; i < k; i++) {
     if ( klingon[i].energy > 0) {
       xd = enterprise.sector.x - klingon[i].sector.x;

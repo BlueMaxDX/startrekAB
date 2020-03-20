@@ -38,6 +38,8 @@ void warpQuadrant( byte x, byte y, int deg ) {
     arduboy.display();
     delay(SPEED);
   }
+  arduboy.clear();
+  
   gdock = 0;
 
   if (random(5) == 0) damageMechanism();
