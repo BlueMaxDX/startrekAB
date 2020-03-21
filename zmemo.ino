@@ -76,6 +76,7 @@ void updateMain() {
 void configuration() {
   int curs = 7;
   int done = 0;
+  int ans;
   while (done == 0) {
     arduboy.clear();
     arduboy.fillRect(0, 0, 127, 7, WHITE);
@@ -105,10 +106,12 @@ void configuration() {
     if (arduboy.justPressed(A_BUTTON) || arduboy.justPressed(RIGHT_BUTTON) || arduboy.justPressed(LEFT_BUTTON)) {
       switch (curs) {
         case 0:
-          totalKlingon = askAmount( 1, 99, rfsp( ALERT_BASE_ID + 4), totalKlingon, 0 );
+          ans = askAmount( 1, 99, rfsp( ALERT_BASE_ID + 4), totalKlingon, 0 );
+          if(ans > 0) totalKlingon = ans;
           break;
         case 1:
-          totalBase = askAmount( 1, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
+          ans = askAmount( 0, 9, rfsp( ALERT_BASE_ID + 4), totalBase, 0 );
+          if(ans >= 0) totalBase = ans;
           break;
         case 2:
           supply = !supply;
