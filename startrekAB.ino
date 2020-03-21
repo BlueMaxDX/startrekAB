@@ -60,7 +60,7 @@ bool sBlackhole = 0;
 bool jamming = 0;
 bool sectorJamming = 0;
 bool asteroid = 0;
-bool ginv = 1;
+bool ginv = 0;
 
 ship klingon[3];
 point base;
@@ -86,7 +86,7 @@ private:
 public:
   void slowPrint(FlashStringHelper message) {
     const char * pointer = reinterpret_cast<const char *>(message);
-
+    
     while(true) {
       char c = pgm_read_byte(pointer);
       ++pointer;
@@ -102,6 +102,8 @@ public:
   }
 
   void slowPrint(uint8_t value) {  
+    bool displayed = false;
+
     if(value == 0) {
       font3x5.print('0');
       arduboy.display();
@@ -117,11 +119,11 @@ public:
     }
     
     for(uint8_t i = 0; i < 3; ++i) {
-      if(digits[i] > 0) {
+      if(digits[i] > 0 || displayed == true){
         printDigit(digits[i]);
         arduboy.display();
+        displayed = true;
       }
-
       checkDelay();
     }
   }
