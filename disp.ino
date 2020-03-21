@@ -59,15 +59,15 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2));
           while (true) {
-            c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-            if (c == 360) return 1;
+            gdegree = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
+            if (gdegree == 360) return 1;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
             }
             if (d == 0) return 1;
-            moveEnterprise( c, d );
+            moveEnterprise( gdegree, d );
             break;
           }
           break;
@@ -82,15 +82,15 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
           while (true) {
-            c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-            if (c == 360) return 1;
+            gdegree = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
+            if (gdegree == 360) return 1;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), dist, 0 );
             }
             if (d == 0) return 1;
-            moveEnterprise( c, d );
+            moveEnterprise( gdegree, d );
             break;
           }
           break;
@@ -168,15 +168,15 @@ void dispMain() {
           break;
         case 1: //warp engine
           while (true) {
-            c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), 0, 1 );
-            if (c == 360) break;
+            gdegree = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), gdegree, 1 );
+            if (gdegree == 360) break;
             if (damage[0] > 0) {
               d = askAmount( 0, 2, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             } else {
               d = askAmount( 0, 80, rfsp( ALERT_BASE_ID + 1), 2, 0 );
             }
             if (d == 0) break;
-            moveEnterprise( c, d );
+            moveEnterprise( gdegree, d );
             repairMechanism();
             klingonAttack();
             break;
@@ -374,11 +374,11 @@ int launchTorpedo( int m ) {
     return 1;
   } else {
     if ( m == 0 ) {
-      c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), 0, 1 );
-      if (c == 360) {
+      gdegree = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), gdegree, 1 );
+      if (gdegree == 360) {
         return 1;
       } else {
-        fireTorpedo( c );
+        fireTorpedo( gdegree );
         return 0;
       }
     } else {
@@ -390,11 +390,11 @@ int launchTorpedo( int m ) {
       radius = atan2( dy, dx );
       degree = radius / 2 / 3.1415 * 360;
       if (degree < 0) degree += 360;
-      c = askAmount( 0, 360, rfsp( ALERT_BASE_ID ), degree, 1 );
-      if (c == 360) {
+      gdegree = askAmount( 0, 359, rfsp( ALERT_BASE_ID ), degree, 1 );
+      if (gdegree == 360) {
         return 1;
       } else {
-        fireTorpedo( c );
+        fireTorpedo( gdegree );
         return 0;
       }
     }

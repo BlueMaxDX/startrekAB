@@ -52,6 +52,7 @@ int days=250;
 bool gdock = 0;
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
+int gdegree = 0;
 
 bool supply = 0;
 bool existBlackhole = 0;
