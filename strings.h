@@ -6,9 +6,10 @@
 #define   COMPUTER_BASE_ID  (15)
 #define   MECHANISM_BASE_ID (21)
 #define   CONFIG_BASE_ID    (29)
-#define   CONFITEM_BASE_ID  (36)
-#define   ALERT_BASE_ID     (42)
-#define   MESSAGE_BASE_ID   (50)
+#define   CONFITEM_BASE_ID  (37)
+#define   ALERT_BASE_ID     (45)
+#define   MECHCOND_BASE_ID  (50)
+#define   MESSAGE_BASE_ID   (53)
 
 const char string_0[] PROGMEM = 
   "                ,------*------,\n"
@@ -74,29 +75,32 @@ const char string_31[] PROGMEM = "  BASE SUPPLY";
 const char string_32[] PROGMEM = "   BLACK HOLE";
 const char string_33[] PROGMEM = "ASTEROID BELT";
 const char string_34[] PROGMEM = "      JAMMING";
-const char string_35[] PROGMEM = "START MISSION";
+const char string_35[] PROGMEM = "  INVERSE SRS";
+const char string_36[] PROGMEM = "START MISSION";
 
-const char string_36[] PROGMEM = "MANY";
-const char string_37[] PROGMEM = "ONCE";
-const char string_38[] PROGMEM = "NOT EXIST";
-const char string_39[] PROGMEM = "EXIST";
-const char string_40[] PROGMEM = "DON'T";
-const char string_41[] PROGMEM = "DO";
+const char string_37[] PROGMEM = "MANY";
+const char string_38[] PROGMEM = "ONCE";
+const char string_39[] PROGMEM = "NOT EXIST";
+const char string_40[] PROGMEM = "EXIST";
+const char string_41[] PROGMEM = "DON'T";
+const char string_42[] PROGMEM = "DO";
+const char string_43[] PROGMEM = "NO";
+const char string_44[] PROGMEM = "YES";
 
-const char string_42[] PROGMEM = "COURSE?";
-const char string_43[] PROGMEM = "DISTANSE?";
-const char string_44[] PROGMEM = "ENERGY?";
-const char string_45[] PROGMEM = "PERCENTAGE?";
-const char string_46[] PROGMEM = "NUMBER OF?";
+const char string_45[] PROGMEM = "COURSE?";
+const char string_46[] PROGMEM = "DISTANSE?";
+const char string_47[] PROGMEM = "ENERGY?";
+const char string_48[] PROGMEM = "PERCENTAGE?";
+const char string_49[] PROGMEM = "NUMBER OF?";
 
-const char string_47[] PROGMEM = "\n  IS DAMAGED!";
-const char string_48[] PROGMEM = "\n  IS REPAIRED!";
-const char string_49[] PROGMEM = "\n  IS OUT OF ORDER.";
+const char string_50[] PROGMEM = "\n  IS DAMAGED!";
+const char string_51[] PROGMEM = "\n  IS REPAIRED!";
+const char string_52[] PROGMEM = "\n  IS OUT OF ORDER.";
 
-const char string_50[] PROGMEM = "JAMMING...";
-const char string_51[] PROGMEM = "TORPEDO IS EMPTY.";
-const char string_52[] PROGMEM = "STRONG GRAVITY\n  FIELD OBSERVED.";
-const char string_53[] PROGMEM = "JAMMING DETECTED.";
+const char string_53[] PROGMEM = "JAMMING...";
+const char string_54[] PROGMEM = "TORPEDO IS EMPTY.";
+const char string_55[] PROGMEM = "STRONG GRAVITY\n  FIELD OBSERVED.";
+const char string_56[] PROGMEM = "JAMMING DETECTED.";
 
 const char * const string[] PROGMEM =
 {
@@ -153,5 +157,8 @@ const char * const string[] PROGMEM =
   string_50,
   string_51,
   string_52,
-  string_53
+  string_53,
+  string_54,
+  string_55,
+  string_56
 };

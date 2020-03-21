@@ -74,34 +74,35 @@ void updateMain() {
 }
 
 void configuration() {
-  int curs = 6;
+  int curs = 7;
   int done = 0;
   while (done == 0) {
     arduboy.clear();
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(10, 0, "CONFIGURATION", 1);
-    for (int i = 0; i < 6; i++) {
-      prints(4, i + 2, rfsp( CONFIG_BASE_ID + i), curs == i);
+    for (int i = 0; i < 7; i++) {
+      prints(4, i + 1, rfsp( CONFIG_BASE_ID + i), curs == i);
     }
-    prints(10, 8, rfsp( CONFIG_BASE_ID + 6), curs == 6);
+    prints(10, 8, rfsp( CONFIG_BASE_ID + 7), curs == 7);
 
     font3x5.setTextColor(WHITE);
-    font3x5.setCursor(80, 14); font3x5.print( totalKlingon );
-    font3x5.setCursor(80, 21); font3x5.print( totalBase );
-    prints(20, 4, rfsp( CONFITEM_BASE_ID + supply), 0);
-    prints(20, 5, rfsp( CONFITEM_BASE_ID + 2 + existBlackhole), 0);
-    prints(20, 6, rfsp( CONFITEM_BASE_ID + 2 + asteroid), 0);
-    prints(20, 7, rfsp( CONFITEM_BASE_ID + 4 + jamming), 0);
+    font3x5.setCursor(80, 7); font3x5.print( totalKlingon );
+    font3x5.setCursor(80, 14); font3x5.print( totalBase );
+    prints(20, 3, rfsp( CONFITEM_BASE_ID + supply), 0);
+    prints(20, 4, rfsp( CONFITEM_BASE_ID + 2 + existBlackhole), 0);
+    prints(20, 5, rfsp( CONFITEM_BASE_ID + 2 + asteroid), 0);
+    prints(20, 6, rfsp( CONFITEM_BASE_ID + 4 + jamming), 0);
+    prints(20, 7, rfsp( CONFITEM_BASE_ID + 6 + ginv), 0);
     arduboy.display();
 
     arduboy.pollButtons();
     if (arduboy.justPressed(UP_BUTTON)) {
-      curs = (curs + 6) % 7;
+      curs = (curs + 7) % 8;
     }
     if (arduboy.justPressed(DOWN_BUTTON)) {
-      curs = (curs + 1) % 7;
+      curs = (curs + 1) % 8;
     }
-    if (arduboy.justPressed(A_BUTTON)) {
+    if (arduboy.justPressed(A_BUTTON) || arduboy.justPressed(RIGHT_BUTTON) || arduboy.justPressed(LEFT_BUTTON)) {
       switch (curs) {
         case 0:
           totalKlingon = askAmount( 1, 99, rfsp( ALERT_BASE_ID + 4), totalKlingon, 0 );
@@ -122,6 +123,9 @@ void configuration() {
           jamming = !jamming;
           break;
         case 6:
+          ginv = !ginv;
+          break;
+        case 7:
           done = 1;
           break;
       }
@@ -175,7 +179,7 @@ void alert( int lev, int mec, int con ) {
   font3x5.setCursor(28, 24);
   if ( mec < 8 ) {
     font3x5.print( rfsp( MECHANISM_BASE_ID + mec) );
-    font3x5.print( rfsp( 47 + con ) );  //is damaged
+    font3x5.print( rfsp( MECHCOND_BASE_ID + con ) );  //is damaged
   } else {
     font3x5.print( rfsp( MESSAGE_BASE_ID + con ) );
   }
