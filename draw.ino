@@ -224,12 +224,15 @@ int askAmount( int minimum, int maximum, FlashStringHelper message, int def, int
       return result + minimum;
     }
     if (arduboy.justPressed(B_BUTTON)) {
+      return -1;
+/*
       if( m == 0 ) {
         result = minimum;
       } else {
         result = 360;
       }
       return result + minimum;
+*/
     }
     if (m == 0) {
 //      if(result + minimum == 0) {
